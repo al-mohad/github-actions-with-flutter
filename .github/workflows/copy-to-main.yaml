@@ -11,7 +11,7 @@ jobs:
     name: Push to dev
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@dev
+    - uses: actions/checkout@master
     - run: |
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
