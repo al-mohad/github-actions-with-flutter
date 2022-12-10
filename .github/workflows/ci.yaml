@@ -1,19 +1,19 @@
-name: Experiment
+# name: Experiment
 
-on:
-  pull_request: 
-    types: [labeled]
-env:
-  message: 'conversation'
-  my_token: ${{ secrets.TOKEN }}
-  
-jobs:
-  my_build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checking out our code
-        uses: actions/checkout@master
-      - name: Say something
-        run: |
-          echo "A little less ${message}"
-          echo "A little more action"
+# on:
+#   pull_request: 
+#     types: [labeled]
+# env:
+#   message: 'conversation'
+#   my_token: ${{ secrets.TOKEN }}
+
+# jobs:
+#   my_build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checking out our code
+#         uses: actions/checkout@master
+#       - name: Say something
+#         run: |
+#           echo "A little less ${message}"
+#           echo "A little more action"
