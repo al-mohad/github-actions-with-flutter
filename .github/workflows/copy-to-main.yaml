@@ -12,9 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Set environment variable "is-auto-commit"
-    if: github.event.commits[0].message == env.CI_COMMIT_MESSAGE && github.event.commits[0].author.name == env.CI_COMMIT_AUTHOR
-    run: echo "is-auto-commit=true" >> $GITHUB_ENV
     - run: |
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
