@@ -23,8 +23,8 @@ jobs:
       name: Testing
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/checkout@master
-        - uses: subosito/flutter-action@v1.3.0
-        - run: flutter packages get
-        - name: Running test
-        - run: flutter run test --exclude-tags="no-ci"
+      - uses: actions/checkout@master
+      - uses: subosito/flutter-action@v1.3.0
+      - run: flutter packages get
+      - name: Running test
+      - run: flutter run test --exclude-tags="no-ci"
