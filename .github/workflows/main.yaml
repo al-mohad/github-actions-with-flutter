@@ -33,7 +33,7 @@ jobs:
       run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
 
     - name: Raise PR
-        id: mindinglyfe-1
+      id: mindinglyfe-1
       run: peter-evans/create-pull-request@v3
       with:
         branch: "almohad"
