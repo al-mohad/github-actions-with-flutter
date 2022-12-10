@@ -30,3 +30,15 @@ jobs:
 
       - name: updating author info
         run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
+
+      - name: Raise PR
+        run: peter-evan/create-pull-request@v3
+        with:
+          branch: "dev"
+          base: main
+          title: "PR MESSAGE HERE"
+          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+          body: This is to show automatic pr creation
+          token: ${{ secrets.TOKEN }}
+          delete-branch: false
