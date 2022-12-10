@@ -33,7 +33,7 @@ jobs:
       run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
 
     - name: Raise PR
-        id: pr-id
+        id: mindinglyfe-1
       run: peter-evans/create-pull-request@v3
       with:
         branch: "almohad"
@@ -49,10 +49,11 @@ jobs:
       uses: juliangruber/approve-pull-request-action@v1
       with:
         github-token: ${{ secrets.TOKEN }}
-        number: ${{ steps.pr-id.outputs.pull-request-number }}
+        number: ${{ steps.mindinglyfe-1.outputs.pull-request-number }}
 
     - name: Merge almohad PR to dev
       uses: juliangruber/merge-pull-request-action@v1
       with:
         github-token: ${{ secrets.TOKEN }}
-        number: ${{ steps.pr-id.outputs.pull-request-number }}
+        number: ${{ steps.mindinglyfe-1.outputs.pull-request-number }}
+        method: squash
