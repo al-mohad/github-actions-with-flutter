@@ -4,7 +4,8 @@
 name: Push almohad to dev
 on:
   push:
-    branches: almohad, dev
+    branches:
+      - almohad
 
 jobs:
   push-to-dev:
