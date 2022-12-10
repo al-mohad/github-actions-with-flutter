@@ -25,13 +25,7 @@ on:
 
 jobs:
 create-pull-request:
-    name: PR to dev
+    name: PR to main
     runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: subosito/flutter-action@master
-    - name: Install dependencies
-      run: flutter packages get
-    - name: Running test
-     run: flutter run test --exclude-tags="no-ci"
+   
 
