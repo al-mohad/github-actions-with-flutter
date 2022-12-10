@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - almohad
-name: "Build & Release"
+name: "ppp"
 
 jobs:
   creating_pull_request:
