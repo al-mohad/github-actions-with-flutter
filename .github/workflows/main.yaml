@@ -18,7 +18,10 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
 
+name: Create PR
+on:
   pull_request:
+    branches: dev
     tests:
       name: Testing
       runs-on: ubuntu-latest
