@@ -34,7 +34,7 @@ jobs:
 
       - name: Raise PR
         run: peter-evans/create-pull-request@v3
-        with:
+      with:
           branch: "dev"
           base: main
           title: "PR MESSAGE HERE"
