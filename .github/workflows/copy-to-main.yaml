@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+      with:
+        commit-message: Update report
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
     - run: |
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
