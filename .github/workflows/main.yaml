@@ -17,13 +17,18 @@ jobs:
         echo ${{ github.event.head_commit.message }}
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
-  
-  productionPromotion:
+
+name: Create PR to main
+on:
+  push:
+    branches: dev
+jobs:  
+  create-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@master
         with:
-          ref: production
+          ref: main
       - name: Reset promotion branch
         run: |
           git fetch origin main:main
@@ -31,4 +36,4 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          branch: production-promotion
+          branch: main
