@@ -23,23 +23,23 @@ jobs:
     name: PR to main
     runs-on: ubuntu-latest
     steps:
-      - name: checking out code
-        uses: actions/checkout@master
+    - name: checking out code
+      uses: actions/checkout@master
 
-      - name: extracting commit data
-        uses: rlespinasse/git-commit-data-action@v1.x
+    - name: extracting commit data
+      uses: rlespinasse/git-commit-data-action@v1.x
 
-      - name: updating author info
-        run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
+    - name: updating author info
+      run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
 
-      - name: Raise PR
-        run: peter-evans/create-pull-request@v3
-      with:
-          branch: "dev"
-          base: main
-          title: "PR MESSAGE HERE"
-          committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
-          author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
-          body: This is to show automatic pr creation
-          token: ${{ secrets.TOKEN }}
-          delete-branch: false
+    - name: Raise PR
+      run: peter-evans/create-pull-request@v3
+    with:
+        branch: "dev"
+        base: main
+        title: "PR MESSAGE HERE"
+        committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+        author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+        body: This is to show automatic pr creation
+        token: ${{ secrets.TOKEN }}
+        delete-branch: false
