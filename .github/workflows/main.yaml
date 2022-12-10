@@ -4,7 +4,7 @@
 name: Push almohad to dev
 on:
   push:
-    branches: almohad
+    branches: almohad, dev
 
 jobs:
   push-to-dev:
@@ -18,10 +18,10 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
 
-name: Create PR to main
-on:
-  push:
-    branches: dev
+# name: Create PR to main
+# on:
+#   push:
+#     branches: dev
 
 jobs:
   create-pull-request:
