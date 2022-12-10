@@ -17,3 +17,14 @@ jobs:
         echo ${{ github.event.head_commit.message }}
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
+
+  pull_request:
+    tests:
+      name: Testing
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@master
+        - uses: subosito/flutter-action@v1.3.0
+        - run: flutter packages get
+        - name: Running test
+        - run: flutter run test --exclude-tags="no-ci"
