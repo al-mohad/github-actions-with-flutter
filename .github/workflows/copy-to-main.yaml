@@ -1,17 +1,17 @@
 # As some repositories are using this action by referring to @master
 # this branch needs to be kept alive until these references no longer exist.
 
-name: Push develop to master
+name: Push almohad to dev
 on:
   push:
     branches: almohad
 
 jobs:
-  push-to-master:
-    name: Push to Main
+  push-to-dev:
+    name: Push to dev
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@dev
     - run: |
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
-        git push -f origin develop:main
+        git push -f origin almohad:dev
