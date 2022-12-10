@@ -20,7 +20,7 @@ jobs:
         env:
           REPO: self
           BRANCH: dev # The branch name where you want to push the assets
-          # FOLDER: build # The directory where your assets are generated
+          FOLDER: dev # The directory where your assets are generated
           GITHUB_TOKEN: ${{ secrets.TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Pushed from local machine: ({sha}) {msg}" # The commit message
 
