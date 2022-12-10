@@ -31,7 +31,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: subosito/flutter-action@master
     - name: Install dependencies
-       run: flutter packages get
-      - name: Running test
-       run: flutter run test --exclude-tags="no-ci"
+      run: flutter packages get
+    - name: Running test
+     run: flutter run test --exclude-tags="no-ci"
 
