@@ -18,16 +18,19 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.TOKEN }}@github.com/${{ github.repository }}.git
         git push -f origin almohad:dev
 
-name: Create PR
+name: Create PR to main
 on:
-  pull_request:
+  push:
     branches: dev
-    tests:
-      name: Testing
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@master
-      - uses: subosito/flutter-action@v1.3.0
-      - run: flutter packages get
+
+jobs:
+  create-pull-request:
+    name: PR to dev
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: subosito/flutter-action@v1.3.0
+    - run: flutter packages get
       - name: Running test
       - run: flutter run test --exclude-tags="no-ci"
+
