@@ -30,9 +30,3 @@ jobs:
 
       - name: updating author info
         run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
-# name: Create PR to main
-# on:
-#   push:
-#     branches: dev
-
-# jobs:
