@@ -27,5 +27,12 @@ jobs:
   create-pull-request:
     name: PR to main
     runs-on: ubuntu-latest
-   
+    steps:
+      - name: checking out code
+        uses: actions/checkout@master
 
+      - name: extracting commit data
+        uses: rlespinasse/git-commit-data-action@v1.x
+
+      - name: updating author info
+        run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
