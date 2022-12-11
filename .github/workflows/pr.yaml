@@ -1,19 +1,49 @@
-name: Create PR to main
+# As some repositories are using this action by referring to @master
+# this branch needs to be kept alive until these references no longer exist.
+
+name: Push almohad to dev
 on:
   push:
-    branches: dev
-jobs:  
+    branches:
+      - dev
+
+jobs:
   create-pull-request:
+    name: Create PR on dev and merge
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-        with:
-          ref: main
-      - name: Reset promotion branch
-        run: |
-          git fetch origin main:main
-          git reset --hard main
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          branch: main
+    - name: checking out code
+      uses: actions/checkout@master
+
+    - name: extracting commit data
+      uses: rlespinasse/git-commit-data-action@v1.x
+
+    - name: updating author info
+      run: echo ${{ env.GIT_COMMIT_AUTHOR_NAME }} > AUTHOR
+
+    - name: Raise PR
+      id: mindinglyfe-1
+      uses: peter-evans/create-pull-request@v3
+      with:
+        branch: "almohad"
+        base: dev
+        title: "PR MESSAGE HERE"
+        committer: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+        author: ${{ env.GIT_COMMIT_AUTHOR_NAME }} ${{ env.GIT_COMMIT_AUTHOR_EMAIL }}
+        body: 
+          This is to show automatic pr creation
+        token: ${{ secrets.TOKEN }}
+        delete-branch: false
+
+    - name: Approve PR
+      uses: juliangruber/approve-pull-request-action@v1
+      with:
+        github-token: ${{ secrets.TOKEN }}
+        number: ${{ steps.mindinglyfe-1.outputs.pull-request-number }}
+
+    - name: Merge almohad PR to dev
+      uses: juliangruber/merge-pull-request-action@v1
+      with:
+        github-token: ${{ secrets.TOKEN }}
+        number: ${{ steps.mindinglyfe-1.outputs.pull-request-number }}
+        method: squash
