@@ -3,7 +3,7 @@ name: Create Auto PR on push to dev
 on:
   push:
     branches:
-      - dev
+      - almohad
 
 jobs:
   updateAuthor:
